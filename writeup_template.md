@@ -23,32 +23,34 @@
 [image2]: ./calibration_images/example_grid1.jpg
 [image3]: ./calibration_images/example_rock1.jpg 
 
-## [Rubric](https://review.udacity.com/#!/rubrics/916/view) Points
-### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
+![alt text][image1]
+![alt text][image2]
 
 ### Notebook Analysis
 #### 1. Run the functions provided in the notebook on test images (first with the test data provided, next on data you have recorded). Add/modify functions to allow for color selection of obstacles and rock samples.
-Here is an example of how to include an image in your writeup.
+##### 1.Calibration Data
+Read in and display example grid and rock sample calibration images.
+##### 2.Perspective Transform 
+it is using a function called *perspect_transform*, this function takes as inputs an image, as well as source (src) and destination . After that it will apply the cv2.warpPerspective function with the return of the perspective transform and the image. 
+##### 3.Color Thresholding
+It is using the *color_thresh()* function which is used for   out by color_thresh() which shows the navigable terrain. The next task is to understand how to identify rocks. Using one of the rock sample images, I performed a pixel analysis to determine the appropriate thresholds for Red, Green, and Blue pixels that create the yellow of the rock.
 
-![alt text][image1]
+##### 4.Coordinate Transformations
+##### 5.process_image
 
-#### 1. Populate the `process_image()` function with the appropriate analysis steps to map pixels identifying navigable terrain, obstacles and rock samples into a worldmap.  Run `process_image()` on your test data using the `moviepy` functions provided to create video output of your result. 
+First I took a series of images from the simulator and stored them in dataset/IMG/. I then stepped through the notebook process on the test data given and then on the images I took.
+
+The first modifications were in perspect_transform, simply using the process learned in class.
+
+Next, I added two functions color_match and color_inverse_thresh. Color match took the input color and compared the difference against a threshold. Simple but it worked for this example. One problem with it is that the color should be recognized whether it is bright or dark, so it should have some kind of normalization. I added color_inverse_threshold to check that a color is less than the given color. It is used to detect walls. I could not use the given color_thresh because it does not distinguish between black and white, both having similar rgb profiles.
+
+
+#### 2. Populate the `process_image()` function with the appropriate analysis steps to map pixels identifying navigable terrain, obstacles and rock samples into a worldmap.  Run `process_image()` on your test data using the `moviepy` functions provided to create video output of your result. 
 And another! 
 
-![alt text][image2]
+
 ### Autonomous Navigation and Mapping
-
-#### 1. Fill in the `perception_step()` (at the bottom of the `perception.py` script) and `decision_step()` (in `decision.py`) functions in the autonomous mapping scripts and an explanation is provided in the writeup of how and why these functions were modified as they were.
-
-
-#### 2. Launching in autonomous mode your rover can navigate and map autonomously.  Explain your results and how you might improve them in your writeup.  
-
-**Note: running the simulator with different choices of resolution and graphics quality may produce different results, particularly on different machines!  Make a note of your simulator settings (resolution and graphics quality set on launch) and frames per second (FPS output to terminal by `drive_rover.py`) in your writeup when you submit the project so your reviewer can reproduce your results.**
-
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
-
-
-
-![alt text][image3]
+#### Check the following video about result:
+#### How to improve the result obtained:
 
 
