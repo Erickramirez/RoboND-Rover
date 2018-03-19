@@ -60,6 +60,7 @@ nav_pix = Rover.worldmap[:, :, 2] > 0  #if the current result is a valid terrain
 Rover.worldmap[nav_pix, 0] = 0 #it is cleaning the values on obstacles
 
 ```
+Note: this also applies to [perception.py](/code/perception.py) and function `perception_step(Rover)`. The file [decision.py](/code/decision.py) wasn't modified 
 The order for the data captured will be: rock samples, terrain and obstacles.
 * Convert the rover-centric pixel values to world coords, it was performed with the Coordinate transform.
 ##### 2.final result from [Rover_Project_Test_Notebook.ipynb](/code/Rover_Project_Test_Notebook.ipynb)
