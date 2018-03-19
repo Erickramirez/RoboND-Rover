@@ -148,17 +148,13 @@ def perception_step(Rover):
     if threshed_rock.any():
         Rover.vision_image[:, :, 1] = threshed_rock * 255
         rock_xpix, rock_ypix = rover_coords(threshed_rock)
-        #rock_xpix = rock_xpix -obsxpix
-        #rock_ypix = rock_ypix - obsypix
         rock_x_world, rock_y_world = pix_to_world(rock_xpix, rock_ypix, Rover.pos[0], Rover.pos[1], yaw, world_size, scale)
-
         rock_dist, rock_ang =  to_polar_coords(rock_x_world, rock_y_world)
         rock_idx = np.argmin(rock_dist)
         rock_xcen = rock_x_world[rock_idx]
         rock_ycen = rock_x_world[rock_idx]
         Rover.worldmap[rock_y_world, rock_x_world, :] = 255
-        #Rover.nav_dists, Rover.nav_angles = rock_dist, rock_ang
-        #Rover.send_pickup = True
+
     
     
     return Rover
